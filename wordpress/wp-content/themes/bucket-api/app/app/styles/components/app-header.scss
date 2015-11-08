@@ -1,0 +1,134 @@
+
+.app-header {
+	$first-breakpoint: 1770px;
+	$font-size: 1.5em;
+
+	$breakpoint-increment: 180;
+	$font-size-increment: 0.2;
+
+	padding: 0 15px;
+	background: url(/wp-content/themes/bucket-api/app/public/images/elephant-header.jpg);
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+	color: white;
+	font-size: $font-size;
+
+	header {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+
+	}
+
+	h1, h2 {
+		font-weight: 100;
+
+	}
+
+	h1 {
+		font-size: 4.5em;
+	}
+
+	h2 {
+		font-family: $sans-serif;
+		font-size: $font-size;
+
+	}
+
+	p {
+		font-size: $font-size - 0.5;
+		font-weight: 100;
+		text-shadow: 0px 2px 0px black;
+		margin: 0 auto;
+		margin-top: 20px;
+		color: lighten(#C1A362, 20%);
+
+	}
+
+	@media (max-width: 670px) {
+
+		br {
+			display: none;
+
+		}
+
+	}
+
+	@media (max-width: 735px) {
+
+		h1 {
+			font-size: 2.25em;
+
+		}
+
+	}
+
+	$breakpoint: 620px;
+	$breakpoint-increment: 100;
+
+
+
+	@media (min-width: $breakpoint) {
+		font-size: $font-size + 0.1;
+
+	}
+
+	@for $i from 1 through 12 {
+		@media (min-width: $breakpoint + ($i * $breakpoint-increment)) {
+			font-size: $font-size + ($i * $font-size-increment);
+		}
+	}
+
+	// @media (min-width: ) {
+	// 	font-size: $font-size + 0.3;
+		
+	// }
+
+	// @media (min-width: 820px) {
+	// 	font-size: $font-size + (2 * 0.3);
+		
+	// }
+
+
+	// @media (min-width: 780px) {
+	// 	font-size: 2em;
+
+	// }
+
+	// @media (max-width: $first-breakpoint) {
+	// 	font-size: $font-size - (1 * $font-size-increment);
+
+	// }
+
+	// @media (max-width: $first-breakpoint - (1 * $breakpoint-increment)) {
+	// 	font-size: $font-size - (2 * $font-size-increment);
+
+	// }
+
+	// @media (max-width: $first-breakpoint - (2 * $breakpoint-increment)) {
+	// 	font-size: $font-size - (3 * $font-size-increment);
+
+	// }
+
+	// @media (max-width: $first-breakpoint - (3 * $breakpoint-increment)) {
+	// 	font-size: $font-size - (4 * $font-size-increment);
+
+	// }
+
+	// @media (max-width: $first-breakpoint - (4 * $breakpoint-increment)) {
+	// 	font-size: $font-size - (5 * $font-size-increment);
+
+	// }
+
+	// @media (max-width: $first-breakpoint - (5 * $breakpoint-increment)) {
+	// 	font-size: $font-size - (6 * $font-size-increment);
+
+	// }
+
+	// @media (max-width: $first-breakpoint - (6 * $breakpoint-increment)) {
+	// 	font-size: $font-size - (7 * $font-size-increment);
+
+	// }
+
+}

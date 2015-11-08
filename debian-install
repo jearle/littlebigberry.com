@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Updates our system
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+# Installs the software we need
+sudo apt-get install \
+	vim \
+	mysql-server mysql-client \
+	apache2 apache2-doc \
+	php5 php5-mysql libapache2-mod-php5 \
+	vsftpd
+
+# Enable mod rewrite
+sudo a2enmod rewrite
+
+# Allows the mod_rewrite module to work
+sudo sed -i 's/AllowOverride\ None/AllowOverride All/g' /etc/apache2/sites-available/default
+sudo sed -i 's/AllowOverride\ None/AllowOverride All/g' /etc/apache2/sites-available/default
+
+# We are disabling anonymous FTP connections
+# 	enabling local users to sign into FPT
+#	enabling the ability to write to the filesystem
+sudo sed -i 's/anonymous_enable=YES/anonymous_enable=NO/g' /etc/vsftpd.conf
+sudo sed -i 's/#local_enable=YES/local_enable=YES/g' /etc/vsftpd.conf
+sudo sed -i 's/#write_enable=YES/write_enable=YES/g' /etc/vsftpd.conf
+
+# Set the FTP root folder to the /var/www folder
+echo "local_root=/var/www" | sudo tee -a /etc/vsftpd.conf
+
+# Allow the apache user to manipulate files in the /var/www folder
+sudo chown -R www-data:www-data /var/www
+
+# Restart our services
+sudo service vsftpd restart
+sudo service apache2 restart
+
+# Install NVM and node
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.24.0/install.sh | bash
+source $HOME/.nvm/nvm.sh
+nvm install v0.12.0
+nvm alias v0.12.0
+echo "source $HOME/.nvm/nvm.sh" >> $HOME/.profile

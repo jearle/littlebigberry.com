@@ -1,0 +1,3 @@
+#!/usr/bin/env bach
+
+cp -r wordpress/wp-content/themes/bucket-api/app/public/images/ wordpress/wp-content/themes/bucket-api/app/public/wp-content/themes/bucket-api/app/public/images/

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd wordpress/wp-content/themes/bucket-api/app
+ember build

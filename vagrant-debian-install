@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Updates our system
+sudo apt-get update -y
+sudo apt-get upgrade -y
+
+# Installs the software we need
+sudo apt-get install \
+	vim \
+	mysql-server mysql-client \
+	apache2 apache2-doc \
+	php5 php5-mysql libapache2-mod-php5 \
+	vsftpd
+
+# Enable mod rewrite
+sudo a2enmod rewrite
+
+# Change the default public folder to /vagrant/wordpress
+sudo sed -i 's/var\/www/vagrant\/wordpress/g' /etc/apache2/sites-available/default
+
+# Allows the mod_rewrite module to work
+sudo sed -i 's/AllowOverride\ None/AllowOverride All/g' /etc/apache2/sites-available/default
+sudo sed -i 's/AllowOverride\ None/AllowOverride All/g' /etc/apache2/sites-available/default
+
+# Allows the vagrant user to manipulate the apache2 lock files
+sudo chown -R vagrant:vagrant /var/lock/apache2
+
+# Switches the apache user www-data to vagrant
+sudo sed -i 's/APACHE_RUN_USER=www-data/APACHE_RUN_USER=vagrant/g' /etc/apache2/envvars
+sudo sed -i 's/APACHE_RUN_GROUP=www-data/APACHE_RUN_GROUP=vagrant/g' /etc/apache2/envvars
+
+# We are disabling anonymous FTP connections
+# 	enabling local users to sign into FPT
+#	enabling the ability to write to the filesystem
+sudo sed -i 's/anonymous_enable=YES/anonymous_enable=NO/g' /etc/vsftpd.conf
+sudo sed -i 's/#local_enable=YES/local_enable=YES/g' /etc/vsftpd.conf
+sudo sed -i 's/#write_enable=YES/write_enable=YES/g' /etc/vsftpd.conf
+
+# Set the FTP root folder to the /vagrant/wordpress folder
+echo "local_root=/vagrant/wordpress" | sudo tee -a /etc/vsftpd.conf
+
+sudo service vsftpd restart
+sudo service apache2 restart

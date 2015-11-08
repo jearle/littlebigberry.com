@@ -1,0 +1,28 @@
+<nav>
+
+
+	{{#link-to 'index' class="home"}}
+
+		LBB
+
+	{{/link-to}}
+
+	<ul>
+		
+		{{#each link in links}}
+			
+			<li>
+
+				{{#link-to link.href}}
+
+					{{link.name}}
+
+				{{/link-to}}
+				
+			</li>
+
+		{{/each}}
+
+	</ul>
+
+</nav>

@@ -1,0 +1,64 @@
+
+.app-nav {
+	$first-breakpoint: 1450px;
+	$second-breakpoint: 1130px;
+	$third-breakpoint: 930px;
+
+	position: relative;
+	background: lighten(black, 15%);
+	font-size: 2em;
+	padding: 15px 0;
+	box-shadow: 0px 1px 5px 0px lighten(black, 0%);
+
+	ul {
+		text-align: center;
+
+	}
+
+	li {
+		display: inline-block;
+		margin: 0 20px
+
+	}
+
+	a {
+		@include transition(all 0.3s ease-in-out);
+		color: white;
+		font-weight: 300;
+
+	}
+
+	a:hover {
+		color: #C1A362;
+
+	}
+
+	a.home {
+		font-family: $serif;
+		float: left;
+		margin: 0 10px;
+		letter-spacing: -7px;
+
+	}
+	
+	@media (max-width: $first-breakpoint) {
+		font-size: 1.8em;
+
+		li {
+			margin: 0 15px;
+
+		}
+
+	}
+
+	@media (max-width: $second-breakpoint) {
+		font-size: 1.6em;
+
+		li {
+			margin: 0 10px;
+
+		}
+
+	}
+
+}
